@@ -1,16 +1,15 @@
- import express from "express";
- 
- const app = express();
- const port = 3333;
+import "reflect-metadata";
+import express from "express";
+import "./database";
+import { router } from "./router";
 
- app.get('/', (request, response) => {
-     return response.json({'message': 'oi'})
- });
+const app = express();
+const port = 3333;
 
- app.post('/', (request, response) => {
-     return response.json({'message':'dados salvos'})
- });
+app.use(express.json());
 
- app.listen(port, () => {
-     console.log(`Servidor rodando na porta ${port}!`)
- })
+app.use(router);
+
+app.listen(port, () => {
+  console.log(`Servidor rodando na porta ${port}!`);
+});
